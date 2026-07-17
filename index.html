@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=5" />
+  <meta name="theme-color" content="#111111" />
+  <meta name="description" content="Central de integração e conhecimento do parceiro Osasco Express." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Parceiro OE | Central de Integração</title>
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <button class="icon-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
+      <a class="brand" href="#inicio" aria-label="Página inicial">
+        <span class="brand-mark">OE</span>
+        <span><strong>Parceiro OE</strong><small>Central de Integração</small></span>
+      </a>
+      <button class="icon-btn" id="searchBtn" aria-label="Pesquisar">⌕</button>
+    </header>
+
+    <aside class="drawer" id="drawer" aria-hidden="true">
+      <div class="drawer-head"><strong>Navegação</strong><button class="icon-btn" id="closeMenu">×</button></div>
+      <nav>
+        <a href="#inicio">Início</a>
+        <a href="#livreto">Ler o livreto</a>
+        <a href="#central">Consulta rápida</a>
+        <a href="#confirmacao">Confirmar leitura</a>
+        <a href="https://osascoexpress.com.br" target="_blank" rel="noreferrer">Site Osasco Express</a>
+      </nav>
+      <div class="drawer-support">
+        <small>Suporte dos parceiros</small>
+        <a href="https://wa.me/5511924782555" target="_blank" rel="noreferrer">(11) 92478-2555</a>
+      </div>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+
+    <main>
+      <section id="inicio" class="hero section">
+        <div class="hero-copy">
+          <span class="eyebrow">TREINAMENTO OFICIAL</span>
+          <h1>Tudo que o parceiro precisa saber, em um só lugar.</h1>
+          <p>Leia o gibi completo, pesquise dúvidas por palavra-chave e confirme sua leitura no final.</p>
+          <div class="hero-actions">
+            <a class="btn primary" id="startReadingBtn" href="#livreto">Começar leitura</a>
+            <a class="btn secondary" href="#central">Pesquisar uma dúvida</a>
+          </div>
+        </div>
+        <div class="progress-card">
+          <div class="progress-row"><span>Seu progresso</span><strong id="progressLabel">0 de 32</strong></div>
+          <div class="progress-track" role="progressbar" aria-label="Progresso da leitura" aria-valuemin="0" aria-valuemax="32" aria-valuenow="0"><span id="progressBar"></span></div>
+          <small>As páginas ficam marcadas conforme você avança.</small>
+        </div>
+      </section>
+
+      <section id="livreto" class="section reader-section">
+        <div class="section-head">
+          <div><span class="eyebrow">LIVRETO DIGITAL</span><h2>Arraste para continuar</h2></div>
+          <span class="counter" id="readerCounter">1/32</span>
+        </div>
+        <div class="reader-shell">
+          <button class="nav-arrow prev" id="prevPage" aria-label="Página anterior">‹</button>
+          <div class="reader" id="reader" tabindex="0" aria-live="polite">
+            <div class="page-stage" id="pageStage"><div class="page-loading" aria-hidden="true"></div></div>
+          </div>
+          <button class="nav-arrow next" id="nextPage" aria-label="Próxima página">›</button>
+        </div>
+        <div class="reader-meta">
+          <div><strong id="pageTitle">Bem-vindo ao time</strong><small id="pageHint">Deslize para a esquerda ou use as setas.</small></div>
+          <button class="text-link" id="openArticle">Ler explicação completa <span aria-hidden="true">→</span></button>
+        </div>
+        <div class="reader-controls" aria-label="Controles de leitura"><button id="mobilePrev" class="reader-control" type="button">‹ <span>Anterior</span></button><div class="dots" id="dots" aria-label="Progresso do livreto"></div><button id="mobileNext" class="reader-control" type="button"><span>Próxima</span> ›</button></div>
+      </section>
+
+      <section id="central" class="section knowledge-section">
+        <div class="section-head stacked">
+          <span class="eyebrow">CONSULTA RÁPIDA</span>
+          <h2>O que você precisa resolver?</h2>
+          <p>Pesquise por palavras como “pagamento”, “atraso”, “taxa”, “reserva”, “cliente” ou “bag”.</p>
+        </div>
+        <div class="search-box">
+          <span>⌕</span>
+          <input id="knowledgeSearch" type="search" placeholder="Digite sua dúvida..." autocomplete="off" />
+          <button id="clearSearch" aria-label="Limpar pesquisa">×</button>
+        </div>
+        <div class="quick-chips" id="quickChips"></div>
+        <div class="results-info" id="resultsInfo"></div>
+        <div class="article-grid" id="articleGrid"></div>
+      </section>
+
+      <section id="confirmacao" class="section confirmation-section">
+        <div class="confirmation-card">
+          <span class="eyebrow">ETAPA FINAL</span>
+          <h2>Confirmar leitura</h2>
+          <p>Preencha nome e sobrenome. A confirmação só será liberada depois que todas as páginas forem visualizadas.</p>
+          <div class="read-status" id="readStatus">Telas vistas: 0/32</div>
+          <form id="confirmationForm">
+            <label>Nome<input name="nome" id="nome" required autocomplete="given-name" /></label>
+            <label>Sobrenome<input name="sobrenome" id="sobrenome" required autocomplete="family-name" /></label>
+            <label class="check"><input type="checkbox" id="declaration" required /><span>Declaro que li o livreto e entendi as orientações oficiais da Osasco Express sobre reservas, chegada, uso do aplicativo, atendimento, segurança, comunicação, relatórios e pagamentos.</span></label>
+            <button class="btn primary full" id="confirmBtn" type="submit" disabled>Confirmar leitura</button>
+          </form>
+          <div class="form-message" id="formMessage" role="status"></div>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="articleDialog" class="article-dialog">
+      <div class="dialog-bar"><button class="dialog-back" id="closeArticle" aria-label="Voltar">‹ <span>Voltar</span></button><span class="dialog-title">Central de Integração</span></div>
+      <div id="dialogContent"></div>
+    </dialog>
+
+    <dialog id="searchDialog" class="search-dialog">
+      <div class="dialog-bar"><button class="dialog-back" id="closeSearch" aria-label="Voltar">‹ <span>Voltar</span></button><span class="dialog-title">Pesquisar</span></div>
+      <h2>Pesquisar na plataforma</h2>
+      <div class="search-box"><span>⌕</span><input id="globalSearch" type="search" placeholder="Digite uma palavra-chave..." /><button id="clearGlobal">×</button></div>
+      <div id="globalResults" class="global-results"></div>
+    </dialog>
+
+    <footer>
+      <strong>Osasco Express</strong>
+      <span>Entregamos mais que pedidos. Entregamos confiança.</span>
+      <a href="https://wa.me/5511924782555" target="_blank" rel="noreferrer">Suporte: (11) 92478-2555</a>
+    </footer>
+  </div>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
